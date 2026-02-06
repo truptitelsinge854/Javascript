@@ -1,0 +1,24 @@
+-What is git in short?
+- Git is a distributed version control system that allows 
+    - developers to track changes in their code, 
+    - collaborate with others
+    - manage history with different versions of their projects efficiently
+
+- Basic git commands:
+- git init: Initializes a new Git repository in the current directory.
+- git add <file>: Stages changes to be committed. You can use git add . to stage all changes.
+- git commit -m "message": Commits the staged changes with a descriptive message.
+- git push: Pushes the committed changes to a remote repository (e.g., GitHub).
+- git pull: Fetches and merges changes (made by other developers) from a remote repository to the local repository.
+- git status: Shows the current status of the repository, including staged and unstaged changes.
+- git branch: shows branches in the repository.
+- git checkout <branch>: Switches to the specified branch.
+- 
+
+-- Repository tips
+- If you do git init through terminal, it will create local repository.
+- To create a remote repository you have to go to gitHub and create a new repository manually-
+    - Go to homepage of gitHub and click on "New" button to create a new repository.
+    - Copy repository url(http).
+    - Go to terminal and type git remote add origin <repository url> to link local repository with remote repository.
+    - After that you can push your code to remote repository using git push -u origin master.
