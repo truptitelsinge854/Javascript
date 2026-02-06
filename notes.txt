@@ -1,0 +1,191 @@
+Features:
+ - single-threaded.
+ - line by line - top-down.
+ - synchronous.
+ - dynamic typing.
+
+ Execution Details:
+ 1. Call Stack
+ 2. Web API - Promise(), fetch(), Http calls, setTimeout()
+ 3. Queues - 
+        - Microtask Queue - Higher Priority - Promise()
+        - Macrotask Queue (Callback queue) - setTimeout, setInterval()
+ 4. Event Loop - Engine
+
+ - Event Loop working:
+  1. Checks call stack-execute
+     if stack is empty,
+       check all microtask queue - execute.
+       if m.q. is empty, execute one macrotask.
+  Repeat.
+
+- check JS visualizer.
+
+- var let const
+    - var - function scoped, can be re-declared and values can be changed, hoisting is supported.
+    - let - block scoped, cannot be re-declared, values can be changed, hoisting is not supported.
+    - const - block scoped, cannot be re-declared values cannot be changed, hoisting is not supported.
+
+```
+function test() {
+  if (true) {
+    var x = 10;
+  }
+  console.log(x); // ✅ 10
+}
+
+test();
+```
+- What is Hoisting ? 
+- Hoisting is a variable and function declarations are moved to the top during the compilation phase. 
+  This means that you can use variables and functions before they are declared in the code.
+- Hoisting:
+    - var declarations are hoisted and initialized with undefined.
+    - let and const declarations are hoisted but not initialized.
+    - Function declarations are hoisted with their definitions.
+    - Example:
+        console.log(a); // undefined
+        var a = 5;
+
+        console.log(b); // ReferenceError
+        let b = 10;
+
+        console.log(c); // ReferenceError
+        const c = 15;
+
+        foo(); // "Hello"
+        function foo() {
+            console.log("Hello");
+        }
+
+- == and === diff
+    - == (loose equality) compares values after type coercion (convert value to common type before comparison).
+    - === (strict equality) compares values without type coercion, both value and type must be the same.
+    - Example:
+        console.log(5 == '5'); // true
+        console.log(5 === '5'); // false
+
+- Datatypes in JS
+    - Primitive: string, number, boolean, null, undefined, symbol.
+    - Non-primitive: object (arrays, functions, objects).
+
+- Closure in JS
+    - A function which remembers a variable from its outer scope.
+    - E.g
+    function outer() {
+      let count = 0;
+      return function inner() {
+        count++;
+        return count;
+      }
+    }
+    outer()();
+
+- Functions:
+    - Can be assigned to variables, passed as arguments, returned from other functions.
+    - Types: Named functions, Anonymous functions, Arrow functions, IIFE (Immediately Invoked Function Expressions).
+
+- Arrow Functions:
+    - Shorter syntax.
+    - Lexical this binding.
+    - Cannot be used as constructors.
+    - Example:
+        const add = (a, b) => a + b;
+        const square = x => x * x;
+
+- IIFE:
+    - Function that runs as soon as it is defined.
+    - Syntax: (function() { /* code */ })();
+    - Used to create a new scope and avoid polluting global namespace.
+    - Example:
+        (function() {
+          console.log("IIFE executed");
+        })();
+
+- Promises
+    - it returns promise object when takes time to execute and we want to do something after it is done.
+    - Used for asynchronous operations.
+    - States: pending, fulfilled, rejected.
+    - Methods: then(), catch(), finally().
+    - Example:
+        const promise = new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve("Success!");
+          }, 1000);
+        });
+
+        promise.then(result => {
+          console.log(result); // "Success!"
+        }).catch(error => {
+          console.error(error);
+        });
+
+- Async / Await
+    - Syntactic sugar over Promises.
+    - async function returns a Promise.
+    - await keyword is used to wait for a Promise to resolve.
+    - Example:
+        async function fetchData() {
+          try {
+            const response = await fetch('https://api.example.com/data');
+            const data = await response.json();
+            console.log(data);
+          } catch (error) {
+            console.error(error);
+          }
+        }
+
+- this keyword
+    - it refers to the object that is executing the current function.
+    - In global context, this refers to the global object or window object (window in browsers).
+
+-arrays
+Array in JavaScript:
+An array is a dynamic, ordered collection used to store multiple values in a single variable. 
+ can store mixed data types, and their size can grow or shrink at runtime. 
+ Arrays are objects in JavaScript (typeof [] === "object").
+
+Create Array:
+let arr = [10, 20, 30];
+let arr1 = new Array(5); // creates an array of length 5 with empty slots
+let arr2 = new Array(10, 20, 30); // creates an array
+
+Access / Update:
+arr[0] → access element
+arr[1] = 50 → update element
+
+Common Array Operations:
+
+push() → add element at end
+pop() → remove element from end
+
+unshift() → add element at beginning
+shift() → remove element from beginning
+
+length → number of elements
+includes() → check element exists
+indexOf() → get index of element
+
+slice(start, end) → returns new array, does not modify original
+splice(start, deleteCount) → add/remove elements, modifies original
+concat() → merge arrays
+sort() → sort array
+reverse() → reverse array
+
+map() → transform each element
+filter() → select elements based on condition
+reduce() → reduce array to single value
+
+forEach() → iterate over array
+
+Check Array:
+Array.isArray(arr) → true
+
+Important Points:
+Arrays are passed by reference
+Two arrays are never equal using == or ===
+
+- slice vs splice
+slice(start, end) → returns a new array containing elements from start to end (exclusive). Does not modify original array.
+splice(start, deleteCount, item1, item2, ...) → modifies original array by removing deleteCount elements 
+from start index and optionally adding new items at that position. Returns an array of removed elements.
