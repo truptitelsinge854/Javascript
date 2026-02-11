@@ -103,7 +103,7 @@ test();
         })();
 
 - Promises
-    - it returns promise object when takes time to execute and we want to do something after it is done.
+    - it returns proxy object which is temporary till it resolves or rejects.
     - Used for asynchronous operations.
     - States: pending, fulfilled, rejected.
     - Methods: then(), catch(), finally().
